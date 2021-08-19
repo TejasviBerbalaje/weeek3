@@ -12,20 +12,20 @@ import androidx.recyclerview.widget.RecyclerView
 
 
 class week3_RecyclerView : AppCompatActivity() {
-lateinit var recyclerView:RecyclerView
-
-    lateinit var adapter: RecyclerView.Adapter<RecyclerAdapter.ViewHolder>
-    lateinit var layoutManager: RecyclerView.LayoutManager
+//lateinit var recyclerView:RecyclerView
+//
+//    lateinit var adapter: RecyclerView.Adapter<RecyclerAdapter.ViewHolder>
+//    lateinit var layoutManager: RecyclerView.LayoutManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_week3_recycler_view)
 
-        layoutManager=LinearLayoutManager(this)
-        recyclerView.layoutManager=layoutManager
-
-        adapter=RecyclerAdapter()
-        recyclerView.adapter=adapter
+//        layoutManager=LinearLayoutManager(this)
+//        recyclerView.layoutManager=layoutManager
+//
+//        adapter=RecyclerAdapter()
+//        recyclerView.adapter=adapter
 
 //        val intent = intent
 //
