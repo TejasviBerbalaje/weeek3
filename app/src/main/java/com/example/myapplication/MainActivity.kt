@@ -16,6 +16,7 @@ import com.example.myapplication.R.id
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputLayout
 import com.google.android.material.timepicker.TimeFormat
+import java.io.Serializable
 import java.sql.Time
 import java.text.SimpleDateFormat
 import java.time.Year
@@ -191,19 +192,40 @@ class MainActivity : AppCompatActivity() {
         }
 
         Toast.makeText(this, registration_successful, Toast.LENGTH_SHORT).show()
-        val intent= Intent(this,Activity_data::class.java)
+        val intent= Intent(this,week3_RecyclerView::class.java)
         intent.putExtra("Name",name)
         intent.putExtra("Email",email)
         intent.putExtra("Age",age)
         intent.putExtra("Gender",male.text.toString())
-        intent.putExtra("Date",date)
+        intent.putExtra("Dob",date)
         intent.putExtra("Time",time)
         intent.putExtra("MyImg", R.drawable.person_icon_blue)
 
-        startActivity(intent)
+        setResult(RESULT_OK,intent);
+
+        finish()
 
     }
 }
+
+//class UserInfo : Serializable {
+//    private lateinit var name: String
+//    private lateinit var email: String
+//    fun getName(): String? {
+//        return name
+//    }
+//    @JvmName("setName1")
+//    fun setName(name: String?) {
+//        this.name = name!!
+//    }
+//    fun getEmail(): String? {
+//        return email
+//    }
+//    @JvmName("setEmail1")
+//    fun setEmail(email: String?) {
+//        this.email= email!!
+//    }
+//}
 
 
 

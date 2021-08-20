@@ -15,29 +15,15 @@ import android.widget.TextView
 
 class Activity_data : AppCompatActivity() {
     lateinit var sharebutton: ImageButton
-//lateinit var nameResult: TextView
-//lateinit var resultRadio: TextView
-//    lateinit var resultAge: TextView
 
 
+
+        @SuppressLint("SetTextI18n")
         override fun onCreate(savedInstanceState: Bundle?) {
-//nameResult=findViewById(R.id.resultName)
-//            resultRadio=findViewById(R.id.resultRadio)
-//            resultAge=findViewById(R.id.resultAge)
-
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_data)
         supportActionBar!!.title = "Profile"
         sharebutton = findViewById(R.id.ShareButton)
-
-        val intent = intent
-
-        val name = intent.getStringExtra("Name")
-        val email = intent.getStringExtra("Email")
-            val age = intent.getStringExtra("Age")
-        val gender = intent.getStringExtra("Gender")
-        val date = intent.getStringExtra("Date")
-        val time=intent.getStringExtra("Time")
 
         val nameResult = findViewById<TextView>(R.id.resultName)
         val resultEmail = findViewById<TextView>(R.id.resultEmail)
@@ -47,18 +33,24 @@ class Activity_data : AppCompatActivity() {
             val resultAge=findViewById<TextView>(R.id.resultAge)
 
 
-//for image
+//for getting dat from main activity
         val imageView: ImageView = findViewById(R.id.profileImg)
         val bundle: Bundle = intent.extras!!
         val resId: Int = bundle.getInt("MyImg")
 
+            val name = bundle.getString("Name")
+            val email = bundle.getString("Email")
+            val age = bundle.getString("Age")
+            val gender = bundle.getString("Gender")
+            val date = bundle.getString("Dob")
+            val time=bundle.getString("Time")
 
 
         nameResult.text = "Name:$name"
         resultEmail.text = "Email:$email"
             resultAge.text = "Age:$age"
         resultRadio.text = "Gender:$gender"
-            resultDob.text="Date:$date"
+            resultDob.text="Dob:$date"
             resultTime.text="Time:$time"
         imageView.setImageResource(resId)
 
@@ -86,13 +78,7 @@ class Activity_data : AppCompatActivity() {
     //homebutton
 
     fun homeBtn(view: View) {
-//        val intent = Intent()
-//        intent.putExtra("Name",nameResult.text.toString())
-//        intent.putExtra("Age",resultAge.text.toString())
-//        intent.putExtra("Gender",resultRadio.text.toString())
-
-        startActivity(Intent(applicationContext, week3_RecyclerView::class.java))
-
+        startActivity(Intent(this, week3_RecyclerView::class.java))
 
     }
 

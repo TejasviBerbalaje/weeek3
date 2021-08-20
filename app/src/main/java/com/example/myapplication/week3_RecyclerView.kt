@@ -1,50 +1,71 @@
 package com.example.myapplication
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 
 class week3_RecyclerView : AppCompatActivity() {
-//lateinit var recyclerView:RecyclerView
-//
-//    lateinit var adapter: RecyclerView.Adapter<RecyclerAdapter.ViewHolder>
-//    lateinit var layoutManager: RecyclerView.LayoutManager
-
+    var list: List<Listdatacard>? = null
+//    private var userInfo: UserInfo? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_week3_recycler_view)
-
-//        layoutManager=LinearLayoutManager(this)
-//        recyclerView.layoutManager=layoutManager
-//
-//        adapter=RecyclerAdapter()
-//        recyclerView.adapter=adapter
-
-//        val intent = intent
-//
-//        val name = intent.getStringExtra("Name")
-//        val age = intent.getStringExtra("Age")
-//        val gender = intent.getStringExtra("Gender")
-//
-//        val personname=findViewById<TextView>(R.id.PersonName)
-//        val personage=findViewById<TextView>(R.id.PersonAge)
-//        val persongender=findViewById<TextView>(R.id.PersonGender)
-//
-//        personname.text="$name"
-//        personage.text="$age"
-//        persongender.text="$gender"
+        list = ArrayList<Listdatacard>()
 
 
+        val fab: View = findViewById(R.id.fab)
+
+        var resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+
+
+            if (result.resultCode == Activity.RESULT_OK) {
+
+                var data = result.data
+                // There are no request codes
+                val name = data?.getStringExtra("Name").toString()
+                val email = data?.getStringExtra("Email").toString()
+                val gender = data?.getStringExtra("Gender").toString()
+                val age = data?.getStringExtra("Age").toString()
+                val dob = data?.getStringExtra("Dob").toString()
+                val time = data?.getStringExtra("Time").toString()
+
+
+                (list as ArrayList<Listdatacard>).add(Listdatacard(R.drawable.person_icon_blue,email,name,gender,time,age,dob))
+
+
+                val recyclerView = findViewById<View>(R.id.recyclerView) as RecyclerView
+                val adapter = RecyclerAdapter(list as ArrayList<Listdatacard>)
+                recyclerView.setHasFixedSize(true)
+                recyclerView.layoutManager = LinearLayoutManager(this)
+                recyclerView.adapter = adapter
+
+                val insertIndex = 2
+                adapter.notifyItemInserted(insertIndex);
+            }
+        }
+        fab.setOnClickListener { view ->
+//            resultLauncher.launch(Intent(this,MainActivity::class.java))
+            val intent =Intent(this,MainActivity::class.java)
+//            startActivity(intent)
+//            val intent= Intent(applicationContext,MainActivity::class.java)
+//
+            resultLauncher.launch(intent)
+        }
     }
 
-//    Menu
+
+
+
+    //    Menu
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_main, menu)
@@ -52,9 +73,6 @@ class week3_RecyclerView : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
             R.id.action_Logout -> {
                 val builder1 = AlertDialog.Builder(this)
@@ -62,7 +80,7 @@ class week3_RecyclerView : AppCompatActivity() {
                 builder1.setCancelable(true)
                 builder1.setPositiveButton(
                     "Yes"
-                ) { dialog,which ->finish() }
+                ) { dialog,which ->finishAffinity() }
                 builder1.setNegativeButton(
                     "No"
                 ) { dialog, id -> dialog.cancel() }
@@ -74,17 +92,5 @@ class week3_RecyclerView : AppCompatActivity() {
         }
     }
 
-
-
-
-    fun fab(view: View) {
-        startActivity(Intent(applicationContext, MainActivity::class.java))
-//        Snackbar.make(view, "Please register here", Snackbar.LENGTH_LONG)
-//            .setAction("Action", null).show()
-
-    }
-
-    fun cardView(view: View) {
-        startActivity(Intent(applicationContext, Activity_data::class.java))
-    }
 }
+

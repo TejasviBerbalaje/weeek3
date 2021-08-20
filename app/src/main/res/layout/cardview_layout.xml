@@ -1,62 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:padding="10dp"
+    android:layout_height="200dp"
     >
 
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:id="@+id/CardLinearLayout"
+        android:layout_width="403dp"
+        android:layout_height="match_parent"
         android:onClick="cardView"
-        android:layout_margin="10dp">
+        android:orientation="horizontal"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_margin="5dp"
             android:layout_weight="1"
-            android:orientation="vertical"
-           android:layout_margin="5dp"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/PersonName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textStyle="bold"
                 android:hint="Name"
-                android:textSize="25sp"/>
+                android:textSize="25sp" />
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/PersonEmailId"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content"
+                android:hint="EmailId"
+                android:textSize="18sp" />
 
-                <TextView
-                    android:id="@+id/PersonAge"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:hint="Age"
-                    android:textSize="20sp"/>
+            <TextView
+                android:id="@+id/PersonAge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Age"
+                android:textSize="18sp" />
 
-                <TextView
-                    android:id="@+id/PersonGender"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:hint="Gender"
-                    android:textSize="20sp"/>
-            </LinearLayout>
+            <TextView
+                android:id="@+id/time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Time"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/PersonGender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Gender"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/PersonDob"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Dob"
+                android:textSize="18sp" />
+
         </LinearLayout>
 
-        <ImageView
-            android:id="@+id/PersonImageView"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            app:srcCompat="@drawable/ic_launcher_background"
-            />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="20dp">
+
+            <ImageView
+                android:id="@+id/PersonImageView"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                app:srcCompat="@drawable/ic_launcher_background" />
+
+            <ImageButton
+                android:id="@+id/DeleteButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_gravity="end"
+                android:backgroundTint="@color/Background"
+                android:backgroundTintMode="src_in"
+                android:foregroundTint="@color/black"
+                android:tint="@color/black"
+                app:srcCompat="@android:drawable/ic_menu_delete" />
+        </LinearLayout>
+
+
+
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>
